@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 import cv2 
 import tensorflow as tf
-import imutils #rotating images properly
+import imutils 
 
 def make_dataset(paths, scale):
     """
@@ -22,17 +22,15 @@ def make_dataset(paths, scale):
         # read 
         im = cv2.imread(p.decode(), 3).astype(np.float32)
         
-        # convert to YCrCb (cv2 reads images in BGR!), and normalize
         im_ycc = cv2.cvtColor(im, cv2.COLOR_BGR2YCrCb) / 255.0
 
-        # -- Creating LR and HR images
-        # make current image divisible by scale (because current image is the HR image)
+
         im_ycc_hr = im_ycc[0:(im_ycc.shape[0] - (im_ycc.shape[0] % scale)),
                            0:(im_ycc.shape[1] - (im_ycc.shape[1] % scale)), :]
         im_ycc_lr = cv2.resize(im_ycc_hr, (int(im_ycc_hr.shape[1] / scale), int(im_ycc_hr.shape[0] / scale)), 
                            interpolation=cv2.INTER_CUBIC)
         
-        # only work on the luminance channel Y
+
         lr = im_ycc_lr[:,:,0]
         hr = im_ycc_hr[:,:,0]
         
@@ -66,10 +64,10 @@ def make_val_dataset(paths, scale):
     for p in paths:
         # read
         im = cv2.imread(p.decode(), 3).astype(np.float32)
-        # convert to YCrCb (cv2 reads images in BGR!), and normalize
+        # convert to YCrCb (cv2 reads images in BGR!)
         im_ycc = cv2.cvtColor(im, cv2.COLOR_BGR2YCrCb) / 255.0
         
-        # make current image divisible by scale (because current image is the HR image)
+        # make current image divisible by scale
         im_ycc_hr = im_ycc[0:(im_ycc.shape[0] - (im_ycc.shape[0] % scale)),
                            0:(im_ycc.shape[1] - (im_ycc.shape[1] % scale)), :]
         im_ycc_lr = cv2.resize(im_ycc_hr, (int(im_ycc_hr.shape[1] / scale), int(im_ycc_hr.shape[0] / scale)), 
@@ -82,9 +80,6 @@ def make_val_dataset(paths, scale):
         yield lr, hr
 
 def getpaths(path):
-    """
-    Get all image paths from folder 'path'
-    """
     data = pathlib.Path(path)
     all_image_paths = list(data.glob('*'))
     all_image_paths = [str(p) for p in all_image_paths]
@@ -97,7 +92,7 @@ def augment(dataset_path, save_path):
 
         do_augmentations(dataset_path, save_path)
         
-        #count new images
+
         save_path, dirs, files = next(os.walk(save_path))
         file_count = len(files)
         
@@ -106,10 +101,8 @@ def augment(dataset_path, save_path):
 def rotate(img):
     """
     Function that rotates an image 90 degrees 4 times.
-
-    returns:
-    4 image arrays each rotated 90 degrees
     """
+
     rotated90 = imutils.rotate_bound(img, 90)
     rotated180 = imutils.rotate_bound(img, 180)
     rotated270 = imutils.rotate_bound(img, 270)
