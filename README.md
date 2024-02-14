@@ -16,7 +16,7 @@ This image is the output obtained from the Face Detection Model built on Atlas 2
  This image is the final output obtained from the Da Vinci Model after integrating FSRCNN onto Atlas 200 DK:
  ![](Atlas200DK/FSRCNN-DK/out/20200425215019/0/SaveFilePostProcess_1/davinci_final_output_0_NHWC_output_0.jpeg) 
 # References
-* Chao Dong, Chen Change Loy, Xiaoou Tang. Accelerating the Super-Resolution Convolutional Neural Network, in Proceedings of European Conference on Computer Vision (ECCV), 2016
+* [Chao Dong et al. 2016](https://arxiv.org/abs/1608.00367)
 * https://github.com/Saafke/FSRCNN_Tensorflow
 * https://towardsdatascience.com/review-fsrcnn-super-resolution-80ca2ee14da4
 * https://www.huaweicloud.com/intl/en-us/ascend/doc/Atlas200DK/1.3.0.0/en/en-us_topic_0173402133.html
