@@ -1,17 +1,14 @@
 # Super-Resolution-of-Human-Faces
-In this project, we have ported the Fast Super-Resolution CNN (FSRCNN) model to the Atlas 200 DK and run it on the faces taken from the Face Detection model. One of the potential applications for this would be to deplo FSRCNN on a smartphone and inference an input image with faces to scale in size with minimal data loss.
+This project showcases the integration of the Fast Super-Resolution CNN (FSRCNN) model onto the Atlas 200 DK platform for real-time facial image enhancement. By leveraging Face Detection models, we achieve efficient image capturing and processing, with potential applications including deployment on smartphones for scalable image enhancement with minimal data loss. The FSRCNN model significantly boosts image quality, offering faster super-resolution compared to traditional methods, making it ideal for real-time applications.
 
 # Faster Super Resolution CNN
-Faster Super Resolution CNN is an evolved CNN from SRCNN. While SRCNN does a good job of bringing out scaled images, due to the operations such as Bicubic interpolation and
-the non-linear mapping of image features, it is not fast enough to be used in real-time. This resulted in an evaluation speed of 1.6 frames per second, which is not ideal for
-real-time conversion. The FSRCNN handles it with few changes to the original architecture and it was able to achieve 24 frames per second. The main modifications are the removal of bicubic interpolation and further, for a speed up, the number of features for non-linear mapping was drastically reduced by the shrinking phase and further expanded again to keep the performance fairly equivalent to the original architecture. Due to these small factors, a good amount of speed up was observed. This is why we will be using FSRCNN as our model for super-resolution.
+The Faster Super Resolution CNN, an advancement over SRCNN, addresses the limitations of its predecessor for real-time applications. While SRCNN effectively scales images, its reliance on operations like Bicubic interpolation and non-linear mapping hampers real-time performance, achieving only 1.6 frames per second. In contrast, FSRCNN achieves remarkable speed improvements, reaching 24 frames per second with minimal architectural changes. By eliminating Bicubic interpolation and optimizing the non-linear mapping phase, FSRCNN ensures efficient super-resolution without compromising performance, making it the preferred choice for real-time applications.
 
 # Model Conversion
-Da Vinci architecture is the format in which the model has to be used in the Ascend 310 chip. There are two ways to configure the generated model. We can use the MindStudio GUI or we can also make use of the OMG command-line interface which offers more flexible conversion whereas the GUI is restricted on many levels.
+The Da Vinci architecture is the required format for utilizing models on the Ascend 310 chip. Configuration of the generated model can be accomplished through either the MindStudio GUI or the OMG command-line interface. While the GUI provides a user-friendly interface, the CLI offers greater flexibility in model conversion, making it preferable for advanced users seeking more customization options.
 
 # Face Detection using Atlas 200 DK
-Atlas 200 AI Developer Kit is powered by Ascend 310 processor, helps AI application developers to deploy pre-trained models, and use the powerful processing capability of
-Ascend 310 processors to test real-time applications. The Atlas 200 DK uses its external camera as the input video data in real-time to detect faces in video images and display face detection results using a presenter server.
+The Atlas 200 AI Developer Kit harnesses the formidable processing power of the Ascend 310 processor, empowering AI developers to seamlessly deploy pre-trained models and conduct real-time testing of applications. With its integrated external camera, the Atlas 200 DK captures video data in real time, enabling precise face detection and seamless display of results through a presenter server interface.
 # Results
 This image is the output obtained from the Face Detection Model built on Atlas 200 DK: 
  ![](Atlas200DK/FSRCNN-DK/out/final.png) 
