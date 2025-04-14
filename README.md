@@ -1,24 +1,66 @@
 # Super-Resolution-of-Human-Faces
-This project showcases the integration of the Fast Super-Resolution CNN (FSRCNN) model onto the Atlas 200 DK platform for real-time facial image enhancement. By leveraging Face Detection models, we achieve efficient image capturing and processing, with potential applications including deployment on smartphones for scalable image enhancement with minimal data loss. The FSRCNN model significantly boosts image quality, offering faster super-resolution compared to traditional methods, making it ideal for real-time applications.
+This project demonstrates the integration of the Fast Super-Resolution Convolutional Neural Network (FSRCNN) model onto the Atlas 200 DK platform for real-time facial image enhancement. Combining real-time face detection with efficient image upscaling, the system showcases the potential of deploying advanced AI models on edge devices for low-latency, high-quality visual enhancement.
 
-# Faster Super Resolution CNN
-The Faster Super Resolution CNN, an advancement over SRCNN, addresses the limitations of its predecessor for real-time applications. While SRCNN effectively scales images, its reliance on operations like Bicubic interpolation and non-linear mapping hampers real-time performance, achieving only 1.6 frames per second. In contrast, FSRCNN achieves remarkable speed improvements, reaching 24 frames per second with minimal architectural changes. By eliminating Bicubic interpolation and optimizing the non-linear mapping phase, FSRCNN ensures efficient super-resolution without compromising performance, making it the preferred choice for real-time applications.
+## ⚙️ What is FSRCNN?
+The Fast Super-Resolution CNN (FSRCNN) is a real-time super-resolution model that builds upon and optimizes the earlier SRCNN architecture.
+| Feature | SRCNN | FSRCNN |
+| --- | --- | --- | 
+| Upsampling Technique | Bicubic interpolation | Learnable deconvolution |
+| Inference Speed | ~1.6 FPS | ~24 FPS |
+| Application | Offline (slow) | Real-time, edge-ready |
 
-# Model Conversion
-The Da Vinci architecture is the required format for utilizing models on the Ascend 310 chip. Configuration of the generated model can be accomplished through either the MindStudio GUI or the OMG command-line interface. While the GUI provides a user-friendly interface, the CLI offers greater flexibility in model conversion, making it preferable for advanced users seeking more customization options.
+Key Enhancements in FSRCNN:
 
-# Face Detection using Atlas 200 DK
-The Atlas 200 AI Developer Kit harnesses the formidable processing power of the Ascend 310 processor, empowering AI developers to seamlessly deploy pre-trained models and conduct real-time testing of applications. With its integrated external camera, the Atlas 200 DK captures video data in real time, enabling precise face detection and seamless display of results through a presenter server interface.
-# Results
-This image is the output obtained from the Face Detection Model built on Atlas 200 DK: 
- ![](Atlas200DK/FSRCNN-DK/out/final.png) 
+- Replaces slow bicubic interpolation with efficient deconvolution layers
+
+- Reduces model complexity and improves speed significantly
+
+- Ideal for real-time applications with constrained hardware (e.g., Atlas 200 DK)
+
+## 🧱 System Architecture
+
+![image](https://github.com/user-attachments/assets/ec95058a-e1d2-4166-946c-3bc05127a7ea)
+
+
+## 🛠️ Model Conversion (to Da Vinci Format)
+To run the FSRCNN model on the Ascend 310 chip, it must be converted to a compatible Da Vinci format.
+
+### 🧩 Options:
+- MindStudio GUI: User-friendly interface for model configuration and conversion
+
+- OMG CLI (Offline Model Generator): Powerful command-line tool for advanced model optimization and deployment
+
+> Note: CLI is recommended for greater customization and repeatability in automation pipelines.
+
+
+
+# 🖥️ Face Detection on Atlas 200 DK
+The Atlas 200 AI Developer Kit is powered by Huawei’s Ascend 310 processor and supports real-time AI inference. Features include:
+
+- Direct camera input for live face detection
+
+- Presenter server for web-based result visualization
+
+- Support for deploying multiple models simultaneously for pipeline tasks
+
+## 🧪 Results
+
+### 🎯 Face Detection Output (Real-Time Inference):
+Example image or frame showing successful face detection on live input.
+![](Atlas200DK/FSRCNN-DK/out/final.png) 
+
+### 📈 Super-Resolution Output (FSRCNN-enhanced on-device):
+High-resolution output image showcasing improved facial clarity after FSRCNN processing.
+![](Atlas200DK/FSRCNN-DK/out/20200425215019/0/SaveFilePostProcess_1/davinci_final_output_0_NHWC_output_0.jpeg)   
+
  
- This image is the final output obtained from the Da Vinci Model after integrating FSRCNN onto Atlas 200 DK:
- ![](Atlas200DK/FSRCNN-DK/out/20200425215019/0/SaveFilePostProcess_1/davinci_final_output_0_NHWC_output_0.jpeg) 
-# References
-* [Chao Dong et al. 2016](https://arxiv.org/abs/1608.00367)
-* https://github.com/Saafke/FSRCNN_Tensorflow
-* https://towardsdatascience.com/review-fsrcnn-super-resolution-80ca2ee14da4
-* https://www.huaweicloud.com/intl/en-us/ascend/doc/Atlas200DK/1.3.0.0/en/en-us_topic_0173402133.html
-* https://www.huaweicloud.com/intl/en-us/ascend/doc/Atlas200DK/1.3.0.0/en/en-us_topic_0165968579.html
+# 📚 References
+* [Dong, Chao, et al. "Accelerating the Super-Resolution Convolutional Neural Network." (2016)](https://arxiv.org/abs/1608.00367)
+* [FSRCNN TensorFlow Implementation (by Saafke)](https://github.com/Saafke/FSRCNN_Tensorflow)
+* [FSRCNN Explained on Towards Data Science](https://towardsdatascience.com/review-fsrcnn-super-resolution-80ca2ee14da4)
+* [Huawei Atlas 200 DK Documentation](https://www.huaweicloud.com/intl/en-us/ascend/doc/Atlas200DK/1.3.0.0/en/en-us_topic_0173402133.html)
+* [Model Conversion Guide (Ascend)](https://www.huaweicloud.com/intl/en-us/ascend/doc/Atlas200DK/1.3.0.0/en/en-us_topic_0165968579.html)
+
+
+
 
